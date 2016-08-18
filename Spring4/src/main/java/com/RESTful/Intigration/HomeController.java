@@ -33,7 +33,7 @@ public class HomeController {
 		return name+comment;
 	}
 	
-	@RequestMapping(value="enquiry", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, 
+	@RequestMapping(value="/enquiry", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, 
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public EnquiryResponse postEnquiry(@RequestBody EnquiryWrapper enqWrap) throws CustomException{
 		Enquiry enq=null;
@@ -44,8 +44,8 @@ public class HomeController {
 				response.setComment(enq.getComment());
 				response.setName(enq.getName());
 				response.setResposeId(responseId);
-				error=null;
-				error.getErrorCode();
+				//error=null;
+				//error.getErrorCode();
 			}else
 			{
 				throw new CustomException("Enquiry object not present");
