@@ -10,7 +10,7 @@ public class Test {
 		wrap.setEnquiry(t);
 		Gson gson = new Gson();
 		t.setComment("c");
-		t.setId("12321");
+	
 		t.setName("hareesha");
 		t.setPhone("6023301250");
 		t.setType("query");

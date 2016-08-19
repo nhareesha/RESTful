@@ -17,6 +17,7 @@ import com.RESTful.Intigration.CustomExceptions.ErrorResponse;
 import com.RESTful.Intigration.beans.Enquiry;
 import com.RESTful.Intigration.beans.EnquiryResponse;
 import com.RESTful.Intigration.beans.EnquiryWrapper;
+import com.RESTful.Intigration.dao.BaseDAO;
 
 @RestController
 public class HomeController {
@@ -27,12 +28,17 @@ public class HomeController {
 	@Autowired
 	private ErrorResponse error;
 	
+	@Autowired
+	private BaseDAO dao;	
+	
+	//test method
 	@RequestMapping(value="/enquiry", method=RequestMethod.GET, produces="aplication/json")
 	public String addEnquiry( @RequestParam(value="name", required=true)String name,
 							  @RequestParam(value="comment",required=true)String comment){
 		return name+comment;
 	}
 	
+	//service to submit enquiry
 	@RequestMapping(value="/enquiry", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, 
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 	public EnquiryResponse postEnquiry(@RequestBody EnquiryWrapper enqWrap) throws CustomException{
@@ -44,8 +50,7 @@ public class HomeController {
 				response.setComment(enq.getComment());
 				response.setName(enq.getName());
 				response.setResposeId(responseId);
-				//error=null;
-				//error.getErrorCode();
+				dao.insertRecord(response);
 			}else
 			{
 				throw new CustomException("Enquiry object not present");
