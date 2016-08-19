@@ -37,7 +37,7 @@
 		<property name="dataSource" ref="datasource"/>	
 	</bean>
 	
-	<bean id="baseDao" class="com.RESTful.Intigration.dao.BaseDAOImpl">
+	<bean id="baseDao" class="com.RESTful.Intigration.dao.BaseDAOJdbcImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
 	

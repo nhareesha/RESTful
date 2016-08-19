@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 
 import com.RESTful.Intigration.beans.EnquiryResponse;
 
-public class BaseDAOImpl implements BaseDAO {
+public class BaseDAOJdbcImpl implements BaseDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	
