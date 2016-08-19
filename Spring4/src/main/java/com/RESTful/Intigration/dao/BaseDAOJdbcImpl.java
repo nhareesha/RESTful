@@ -1,11 +1,14 @@
 package com.RESTful.Intigration.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.RESTful.Intigration.beans.EnquiryResponse;
 
@@ -23,7 +26,9 @@ public class BaseDAOJdbcImpl implements BaseDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-
+	/*
+	 * This method insets the record in to table
+	 */
 	public void insertRecord(final EnquiryResponse e) {
 		String iquery;
 		try{
@@ -51,6 +56,24 @@ public class BaseDAOJdbcImpl implements BaseDAO {
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
+	}
+	
+	/*
+	 * This method extracts the result set using RowMapper
+	 */
+	public List<EnquiryResponse> getAllEnquiresRowMapper(){
+		
+		String sql = "Select *from enquiry";
+		return jdbcTemplate.query(sql, new RowMapper<EnquiryResponse>(){
+
+			public EnquiryResponse mapRow(ResultSet rs, int rnumber)
+					throws SQLException {
+				EnquiryResponse er = new EnquiryResponse();
+				er.setName(rs.getString("name"));
+				er.setComment(rs.getString("comment"));
+				er.setResposeId(rs.getString("id"));
+				return er;
+			}});
 	}
 
 }
