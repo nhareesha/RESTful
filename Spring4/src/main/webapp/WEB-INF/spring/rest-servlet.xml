@@ -28,11 +28,8 @@
         	<bean class="com.RESTful.Intigration.Interceptors.BasicInterceptor"></bean>
         </mvc:interceptors> -->
         
-        
-        <!-- allowing spring to discover the package that has controller -->
+        <!--Scans the classpath for annotated components that will be auto-registered as Spring beans-->
         <context:component-scan base-package="com.RESTful.Intigration"/>
-        
-        
         
         <bean name="response" class="com.RESTful.Intigration.beans.EnquiryResponse"/>
         
